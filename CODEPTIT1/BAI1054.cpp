@@ -1,44 +1,25 @@
 #include<stdio.h>
 #include<math.h>
-long songuyento(long a){
-	if(a<2){
-		return 0;
+long long int tong_uoc(long long int a){
+	long long int sum=0;
+	for(long long i=2;i<=sqrt(a);i++){
+		while(a%i==0){
+			sum = sum + i;
+			a/=i;
+    	}
 	}
-	for(int i=2;i<=sqrt(a);i++){
-		if(a%i==0){
-			return 0;
-		}
+	if(a!=1){
+		sum+=a;
 	}
-	return 1;
-}
-long tonguoc(long a){
-	long sum=0;
-	if(songuyento(a)==1){
-		sum = a;
-	}
-	else{
-		for(long i=2;i<=sqrt(a);i++){
-			while(a%i==0){
-				if(songuyento(a/i)==1){
-					sum = sum + a/i + i;
-					break;
-				}
-				else{
-					sum = sum + i;
-				}
-				a/=i;
-	    	}
-		}	
-	}
-	return sum;	
+	return sum;
 }
 int main(){
 	int N, nhap;
-	long long tong = 0;
+	long long int tong = 0;
 	scanf("%d",&N);
 	while(N--){
 		scanf("%d",&nhap);
-    	tong = tong + tonguoc(nhap);
+    	tong = tong + tong_uoc(nhap);
     }
     printf("%lld",tong);
     return 0;
